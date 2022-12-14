@@ -1,0 +1,16 @@
+.container{
+    background-color:rgba(255, 255, 255, 0.855);
+    color: rgb(47, 47, 47);
+    height: 83%;
+    
+}
+
+i{
+    margin-right: 1rem;
+    align-items: center;
+    justify-content: center;
+}
+
+button{
+    margin: 1rem auto 0 1rem;
+}

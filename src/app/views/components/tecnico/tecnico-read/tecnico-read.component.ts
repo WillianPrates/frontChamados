@@ -2,6 +2,7 @@ import { AfterViewInit, Component, ViewChild, } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { Tecnico } from 'src/app/models/tecnico';
+import { TecnicoService } from 'src/app/services/tecnico.service';
 
 @Component({
   selector: 'app-tecnico-read',
@@ -17,7 +18,18 @@ tecnicos: Tecnico[] = [];
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
+
+  constructor(private service : TecnicoService){}
+
   ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
+    this.findAll();
+  }
+
+  findAll():void{
+    this.service.findAll().subscribe((reposta) =>{
+      this.tecnicos = reposta;
+      this.dataSource = new MatTableDataSource<Tecnico>(this.tecnicos);
+      this.dataSource.paginator = this.paginator;
+    })
   }
 }

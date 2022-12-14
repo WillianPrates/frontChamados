@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './views/components/home/home.component';
 import { TecnicoReadComponent } from './views/components/tecnico/tecnico-read/tecnico-read.component';
 
-const routes: Routes = [
+let routes: Routes = [
   {
     path: '',
     component: HomeComponent

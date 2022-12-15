@@ -29,6 +29,7 @@ import { TecnicoCreateComponent } from './views/components/tecnico/tecnico-creat
 import { CommonModule } from '@angular/common';
 import { TecnicoUpdateComponent } from './views/components/tecnico/tecnico-update/tecnico-update.component';
 import { TecnicoDeleteComponent } from './views/components/tecnico/tecnico-delete/tecnico-delete.component';
+import { ClienteReadComponent } from './views/components/cliente/cliente-read/cliente-read.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { TecnicoDeleteComponent } from './views/components/tecnico/tecnico-delet
     TecnicoCreateComponent,
     TecnicoUpdateComponent,
     TecnicoDeleteComponent,
+    ClienteReadComponent,
   ],
   imports: [
     CommonModule,

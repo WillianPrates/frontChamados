@@ -1,1 +1,23 @@
-<p>tecnico-create works!</p>
+<form class="form">
+    <h1>Criar novo técnico</h1>
+
+    <mat-form-field class="full-width">
+      <mat-label>Nome</mat-label>
+      <input matInput placeholder="Ex. Willian Prates">
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+        <mat-label>CPF</mat-label>
+        <input matInput placeholder="Ex. 000.000.000-00">
+      </mat-form-field>
+
+      <mat-form-field class="full-width">
+        <mat-label>Telefone</mat-label>
+        <input matInput placeholder="Ex. (51) 99900-0000)">
+      </mat-form-field>
+
+      <button mat-flat-button color="primary">Criar</button>
+    <button (click)="cancel()" mat-flat-button color="warn">Cancelar</button>
+  
+   
+  </form>

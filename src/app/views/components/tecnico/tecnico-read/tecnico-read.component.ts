@@ -39,4 +39,6 @@ tecnicos: Tecnico[] = [];
   navigateToCreate(): void{
     this.router.navigate(['tecnicos/create'])
   }
+
+  
 }

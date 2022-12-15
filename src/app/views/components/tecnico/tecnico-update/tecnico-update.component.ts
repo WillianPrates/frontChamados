@@ -3,7 +3,6 @@ import { FormControl, FormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Tecnico } from 'src/app/models/tecnico';
 import { TecnicoService } from 'src/app/services/tecnico.service';
-import { EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-tecnico-update',

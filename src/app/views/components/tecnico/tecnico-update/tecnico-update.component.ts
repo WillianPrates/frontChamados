@@ -1,17 +1,18 @@
 import { Component, OnInit, NgModule } from '@angular/core';
 import { FormControl, FormsModule, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Tecnico } from 'src/app/models/tecnico';
 import { TecnicoService } from 'src/app/services/tecnico.service';
 import { EventEmitter, Input, Output } from '@angular/core';
 
-
 @Component({
-  selector: 'app-tecnico-create',
-  templateUrl: './tecnico-create.component.html',
-  styleUrls: ['./tecnico-create.component.css']
+  selector: 'app-tecnico-update',
+  templateUrl: './tecnico-update.component.html',
+  styleUrls: ['./tecnico-update.component.css']
 })
-export class TecnicoCreateComponent implements OnInit {
+export class TecnicoUpdateComponent implements OnInit{
+
+  idTec = ''
 
   tecnico: Tecnico = {
     id: '',
@@ -24,21 +25,22 @@ export class TecnicoCreateComponent implements OnInit {
   cpf = new FormControl('',[Validators.minLength(11)])
   telefone = new FormControl('',[Validators.minLength(11)])
 
-  constructor(private router: Router,
-    private service: TecnicoService
+  constructor(
+    private router: Router,
+    private service: TecnicoService,
+    private route: ActivatedRoute
   ) { }
 
   ngOnInit(): void {
+    this.idTec = this.route.snapshot.paramMap.get('id')!
+    this.findById();
+
   }
 
-  cancel(): void {
-    this.router.navigate(['tecnicos'])
-  }
-
-  create(): void {
-    this.service.create(this.tecnico).subscribe((respota) => {
+  update(): void{
+    this.service.update(this.tecnico).subscribe((resposta) => {
       this.router.navigate(['tecnicos'])
-      this.service.message('Técnico cadastrado com sucesso!')
+      this.service.message('Técnico atualizado com sucesso')
     }, err => {
       if (err.error.error.match('já cadastrado')) {
         this.service.message(err.error.error)
@@ -47,6 +49,17 @@ export class TecnicoCreateComponent implements OnInit {
       }
     })
   }
+
+  findById():void{
+    this.service.findById(this.idTec).subscribe(resposta => {
+      this.tecnico = resposta;
+    })
+  }
+
+  cancel(): void {
+    this.router.navigate(['tecnicos'])
+  }
+
 
   errorValidNome(){
     if(this.nome.invalid){

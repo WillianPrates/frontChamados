@@ -3,39 +3,40 @@ import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Observable } from 'rxjs';
 import { environment } from '../environments/environment.prod';
-import { Cliente } from '../models/cliente';
+import { OS } from '../models/ordem-servico';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ClienteService {
+export class OsService {
+
   baseUrl: String = environment.baseUrl;
 
   constructor(private http: HttpClient,
     private snack: MatSnackBar) { }
 
-  findAll(): Observable<Cliente[]> {
-    const url = this.baseUrl + "/clientes";
-    return this.http.get<Cliente[]>(url);
+  findAll(): Observable<OS[]> {
+    const url = this.baseUrl + "/oss";
+    return this.http.get<OS[]>(url);
   }
 
-  findById(id : any): Observable<Cliente>{
-    const url = this.baseUrl + "/clientes/" + id;
-    return this.http.get<Cliente>(url);
+  findById(id : any): Observable<OS>{
+    const url = this.baseUrl + "/oss/" + id;
+    return this.http.get<OS>(url);
   }
 
-  create(cliente: Cliente): Observable<Cliente> {
-    const url = this.baseUrl + "/clientes";
-    return this.http.post<Cliente>(url, cliente);
+  create(os: OS): Observable<OS> {
+    const url = this.baseUrl + "/oss";
+    return this.http.post<OS>(url, os);
   }
 
-  update(cliente: Cliente): Observable<Cliente>{
-    const url = this.baseUrl + "/clientes/" + cliente.id;
-    return this.http.put<Cliente>(url,cliente);
+  update(os: OS): Observable<OS>{
+    const url = this.baseUrl + "/oss/" + os.id;
+    return this.http.put<OS>(url,os);
   }
 
   delete(id: any):Observable<void> {
-    const url = this.baseUrl + "/clientes/" + id;
+    const url = this.baseUrl + "/oss/" + id;
     return  this.http.delete<void>(url);
 
   }

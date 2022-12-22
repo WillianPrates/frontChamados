@@ -5,6 +5,8 @@ import { ClienteDeleteComponent } from './views/components/cliente/cliente-delet
 import { ClienteReadComponent } from './views/components/cliente/cliente-read/cliente-read.component';
 import { ClienteUpdateComponent } from './views/components/cliente/cliente-update/cliente-update.component';
 import { HomeComponent } from './views/components/home/home.component';
+import { OsCreateComponent } from './views/components/os/os-create/os-create.component';
+import { OsReadComponent } from './views/components/os/os-read/os-read.component';
 import { TecnicoCreateComponent } from './views/components/tecnico/tecnico-create/tecnico-create.component';
 import { TecnicoDeleteComponent } from './views/components/tecnico/tecnico-delete/tecnico-delete.component';
 import { TecnicoReadComponent } from './views/components/tecnico/tecnico-read/tecnico-read.component';
@@ -46,7 +48,17 @@ let routes: Routes = [
   {
     path: 'clientes/delete/:id',
     component: ClienteDeleteComponent
+  },
+  {
+    path: 'os',
+    component:OsReadComponent
+
+  },{
+    path: 'os/create',
+    component:OsCreateComponent
+
   }
+
   
 ];
 

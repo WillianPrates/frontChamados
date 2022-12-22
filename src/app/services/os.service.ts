@@ -16,7 +16,7 @@ export class OsService {
     private snack: MatSnackBar) { }
 
   findAll(): Observable<OS[]> {
-    const url = this.baseUrl + "/oss";
+    const url = this.baseUrl + "/os";
     return this.http.get<OS[]>(url);
   }
 
@@ -26,17 +26,17 @@ export class OsService {
   }
 
   create(os: OS): Observable<OS> {
-    const url = this.baseUrl + "/oss";
+    const url = this.baseUrl + "/os";
     return this.http.post<OS>(url, os);
   }
 
   update(os: OS): Observable<OS>{
-    const url = this.baseUrl + "/oss/" + os.id;
+    const url = this.baseUrl + "/os/" + os.id;
     return this.http.put<OS>(url,os);
   }
 
   delete(id: any):Observable<void> {
-    const url = this.baseUrl + "/oss/" + id;
+    const url = this.baseUrl + "/os/" + id;
     return  this.http.delete<void>(url);
 
   }

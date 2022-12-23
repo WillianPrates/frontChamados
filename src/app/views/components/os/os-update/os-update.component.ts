@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Route, Router } from '@angular/router';
+import { ActivatedRoute, Route, Router } from '@angular/router';
 import { Cliente } from 'src/app/models/cliente';
 import { OS } from 'src/app/models/ordem-servico';
 import { Tecnico } from 'src/app/models/tecnico';
@@ -8,11 +8,11 @@ import { OsService } from 'src/app/services/os.service';
 import { TecnicoService } from 'src/app/services/tecnico.service';
 
 @Component({
-  selector: 'app-os-create',
-  templateUrl: './os-create.component.html',
-  styleUrls: ['./os-create.component.css']
+  selector: 'app-os-update',
+  templateUrl: './os-update.component.html',
+  styleUrls: ['./os-update.component.css']
 })
-export class OsCreateComponent {
+export class OsUpdateComponent {
 
   tecnicos: Tecnico[] = []
   clientes: Cliente[] = []
@@ -30,14 +30,23 @@ export class OsCreateComponent {
     private tecnicoService: TecnicoService,
     private clienteService: ClienteService,
     private OsService: OsService,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute
   ){
 
   }
 
   ngOnInit(): void{
+    this.os.id = this.route.snapshot.paramMap.get('id');
+    this.findById();
     this.listarTecnicos();
     this.listarClientes();
+  }
+
+  findById(): void{
+    this.OsService.findById(this.os.id).subscribe(resposta=>{
+      this.os = resposta;
+    })
   }
 
   listarTecnicos(): void{
@@ -52,9 +61,9 @@ export class OsCreateComponent {
     })
   }
 
-  create(): void{
-    this.OsService.create(this.os).subscribe(resposta=> {
-      this.OsService.message("Ordem de serviço criada com sucesso!"),
+  update(): void{
+    this.OsService.update(this.os).subscribe(resposta=> {
+      this.OsService.message("Ordem de serviço atualizada com sucesso!"),
       this.router.navigate(['os'])
     })
   }

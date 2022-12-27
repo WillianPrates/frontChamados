@@ -1,1 +1,8 @@
-<p>os-view works!</p>
+<div class="container"> 
+    <h1>Vizualiador de Chamado</h1>
+    <mat-card class="mat-elevation-z8">
+        <p id="abertura"> Data de abertura: {{ os.dataAbertura }}</p>
+        <p> {{ os.observacoes }} </p>
+    </mat-card>
+    <button (click)="voltar()" class="mat-elevation-z8" mat-raised-button color="warn">Voltar</button>
+</div>

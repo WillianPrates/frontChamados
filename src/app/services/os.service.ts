@@ -21,7 +21,7 @@ export class OsService {
   }
 
   findById(id : any): Observable<OS>{
-    const url = this.baseUrl + "/oss/" + id;
+    const url = this.baseUrl + "/os/" + id;
     return this.http.get<OS>(url);
   }
 
@@ -32,13 +32,12 @@ export class OsService {
 
   update(os: OS): Observable<OS>{
     const url = this.baseUrl + "/os";
-    return this.http.put<OS>(url,os);
+    return this.http.put<OS>(url, os);
   }
 
   delete(id: any):Observable<void> {
     const url = this.baseUrl + "/os/" + id;
     return  this.http.delete<void>(url);
-
   }
 
   message(msg: String): void {

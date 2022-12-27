@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Route, Router } from '@angular/router';
 import { Cliente } from 'src/app/models/cliente';
 import { OS } from 'src/app/models/ordem-servico';
@@ -12,7 +12,7 @@ import { TecnicoService } from 'src/app/services/tecnico.service';
   templateUrl: './os-update.component.html',
   styleUrls: ['./os-update.component.css']
 })
-export class OsUpdateComponent {
+export class OsUpdateComponent implements OnInit{
 
   tecnicos: Tecnico[] = []
   clientes: Cliente[] = []
@@ -29,7 +29,7 @@ export class OsUpdateComponent {
   constructor(
     private tecnicoService: TecnicoService,
     private clienteService: ClienteService,
-    private OsService: OsService,
+    private osService: OsService,
     private router: Router,
     private route: ActivatedRoute
   ){
@@ -44,8 +44,9 @@ export class OsUpdateComponent {
   }
 
   findById(): void{
-    this.OsService.findById(this.os.id).subscribe(resposta=>{
+    this.osService.findById(this.os.id).subscribe(resposta=>{
       this.os = resposta;
+      this.conversor();
     })
   }
 
@@ -62,8 +63,8 @@ export class OsUpdateComponent {
   }
 
   update(): void{
-    this.OsService.update(this.os).subscribe(resposta=> {
-      this.OsService.message("Ordem de serviço atualizada com sucesso!"),
+    this.osService.update(this.os).subscribe(resposta=> {
+      this.osService.message("Ordem de serviço atualizada com sucesso!"),
       this.router.navigate(['os'])
     })
   }
@@ -71,5 +72,25 @@ export class OsUpdateComponent {
   cancel(): void{
     this.router.navigate(['os'])
   }
+
+  conversor(): void{
+     if(this.os.status == "ABERTO"){
+      this.os.status = 0;
+     }else if(this.os.status == "ANDAMENTO"){
+      this.os.status = 1;
+     }else{
+      this.os.status = 2;
+     }
+
+     if(this.os.prioridade == "BAIXA"){
+      this.os.prioridade = 0;
+     }else if(this.os.prioridade == "MEDIA"){
+      this.os.prioridade = 1;
+     }else {
+      this.os.prioridade = 2;
+     }
+  }
+
+  
 
 }
